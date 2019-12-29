@@ -1,0 +1,57 @@
+{% extends "layout_sign.html" %}
+
+{% block title %}
+    Change Password
+{% endblock %}
+
+{% block main %}
+    <h1>
+        Change Password
+    </h1>
+    <br>
+    <form action="/change" method="post" class="fill-info">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="password" placeholder="New Password" type="password" id="validationCustom01" required>
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="confirmation" placeholder="Confirm Password" type="password" id="validationCustom02" required>
+        </div>
+        <br>
+        <button class="btn btn-outline-light" type="submit">Change Password</button>
+    </form>
+
+    <script>
+        // prevents submission if the password and confirmation don't match
+        document.querySelector("form").onsubmit = function (evt)
+        {
+            evt.preventDefault();
+            if (document.getElementsByName("password")[0].value != document.getElementsByName("confirmation")[0].value)
+            {
+                alert("The passwords do not match.");
+            }
+            else
+            {
+                document.getElementById("myForm").submit();
+            }
+        };
+
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+{% endblock %}

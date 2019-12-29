@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Collection
+{% endblock %}
+
+{% block main %}
+    <!--{% if error %}-->
+    <!--    <div class="alert alert-danger alert-dismissible fade show" role="alert">-->
+    <!--        <strong>ERROR</strong> This puzzle is unsolveable.-->
+    <!--        <button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
+    <!--            <span aria-hidden="true">&times;</span>-->
+    <!--        </button>-->
+    <!--    </div>-->
+    <!--    <br>-->
+    <!--{% endif %}-->
+
+    <form action="/solve" method="post">
+        <h1>
+            Collection
+        </h1>
+        <br>
+        {% if puzzles %}
+            <p>
+                A collection of sudoku puzzles for your perusal and pleasure.
+            </p>
+            <br>
+            <div class="grid card-group">
+                {% for puzzle in puzzles %}
+                    <div class="grid-item grid-item--width2">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ puzzle["puzzle_name"] }}</h5>
+                                {% if puzzle["complete"] %}
+                                    <p class="card-text green"><strong>Status: Complete </strong></p>
+                                {% else %}
+                                    <p class="card-text red"><strong>Status: Incomplete </strong></p>
+                                {% endif %}
+                                <p class="card-text"><strong>Creation Date: </strong></p>
+                                <p class="card-text">{{ puzzle["date"] }}</p>
+                                <p class="card-text"><strong>Creation Time: </strong></p>
+                                <p class="card-text">{{ puzzle["time"] }}</p>
+                                <a href={{"/solve?puzzle_id="+puzzle["puzzle_id"]|string}} class="btn btn-outline-secondary card-btn" name="puzzle_id">Solve</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>
+                Uh oh! Looks like your collection is currently empty. Go create some!
+            </p>
+        {% endif %}
+    </form>
+
+    <script>
+        // basic settings for the masonry grid
+        $('.grid').masonry({
+            itemSelector: '.grid-item',
+            horizontalOrder: true,
+            gutter: 30
+        });
+    </script>
+{% endblock main %}

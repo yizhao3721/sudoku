@@ -1,0 +1,3 @@
+1. Test solve.py with some sample inputs -- maybe make a way to input a grid and get out something
+2. Terminal not working for shuvom? ctrl+c or command+c lol nope
+3.

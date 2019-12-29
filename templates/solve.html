@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Solve
+{% endblock %}
+
+{% block main %}
+    {% if congratz %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Congratulations!</strong> You solved the sudoku puzzle.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <br>
+    {% elif error %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>ERROR</strong> {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <br>
+    {% endif %}
+    <form action={{"/solve?puzzle_id="+puzzle_id|string}} method="post" id="myForm">
+        <h1>
+            Solve: {{ name }}
+        </h1>
+        <br>
+        <p>
+            Solve the sudoku puzzle, and check your answer! (Or let us solve for you!)
+        </p>
+        <input style="display: none;" name="puzzle_id" value={{puzzle_id}} type="number">
+        <br>
+        <table class="table table-bordered align-middle text-center">
+            <tbody>
+                {% for row in puzzles %}
+                    <tr>
+                        {% for cell in row %}
+                            <td class="align-middle">
+                                {% if cell["orig"] %}
+                                    <strong><input type="number" readonly name={{cell["row"]*9+cell["col"]}} class="no-arrows bold" value={{cell["value"]}}></strong>
+                                {% else %}
+                                    {% if cell["value"] == 0 %}
+                                        <input type="number" min="1" max="9" name={{cell["row"]*9+cell["col"]}} class="no-arrows solveInput">
+                                    {% else %}
+                                        <input type="number" min="1" max="9" name={{cell["row"]*9+cell["col"]}} value={{cell["value"]}} class="no-arrows solveInput">
+                                    {% endif %}
+                                {% endif %}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <br>
+        <div class="container">
+            <div class="row solve-option">
+                <div class="col-sm">
+                    <button class="btn btn-outline-light button2" type="submit" name="choice" value="save">Save</button>
+                </div>
+                <div class="col-sm">
+                    <button class="btn btn-outline-light button2" type="submit" name="choice" value="check" id="check">Check</button>
+                </div>
+                <div class="col-sm">
+                    <button class="btn btn-outline-light button2" type="submit" name="choice" value="solve">Solve</button>
+                    <!--<a href={{"/solved?puzzle_id="+puzzle_id|string}} class="btn btn-outline-light button2" name="puzzle_id">Solve</a>-->
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        // go through all the cells and make sure there is a value
+        // if there is no value, prevent submission and call an alert
+        document.getElementById("check").onclick = function(evt)
+        {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            for (var x = 0; x < 81; x++)
+            {
+                var cValue = document.getElementsByName(String(x))[0].value;
+                console.log(cValue)
+                if (!cValue)
+                {
+                    alert("Please fill out all boxes before checking.");
+                    evt.preventDefault();
+                    break;
+                }
+            }
+            // document.getElementById("check").submit()
+            // evt.submit()
+        };
+    </script>
+{% endblock %}

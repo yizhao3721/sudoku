@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Solved
+{% endblock %}
+
+{% block main %}
+    <form action="/solved" method="get" class="grid">
+        <h1>
+            Solved: {{ name }}
+        </h1>
+        <br>
+        <table class="table table-bordered align-middle text-center">
+            <tbody>
+                {% for row in lst %}
+                    <tr>
+                        {% for cell in row %}
+                            <td class="align-middle">
+                                  {{ cell }}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </form>
+{% endblock %}
