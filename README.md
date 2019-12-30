@@ -4,7 +4,7 @@ A comprehensive Sudoku website built with Python using Flask and SQL. Users can 
 
 ## Demo Video
 
-For a demo of the website and all functionalities, download [CS50SadhukaZhao.mp4](https://github.com/yizhao3721/sudoku/blob/master/CS50SadhukaZhao.mp4).
+For a demo of the website and all functionalities, download [CS50SadhukaZhao.mp4](https://github.com/yizhao3721/sudoku/raw/master/CS50SadhukaZhao.mp4).
 
 ## Compiling
 
