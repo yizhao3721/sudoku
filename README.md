@@ -38,3 +38,6 @@ If you wish to change your password, you may click the “Change Password” tab
 ### Logging Out
 
 Hit “Log Out” in the top corner to log out!
+
+## Authors
+Developed and designed by Shuvom Sadhuka and Yijiang Zhao
