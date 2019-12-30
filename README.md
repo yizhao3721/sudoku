@@ -2,6 +2,10 @@
 
 A comprehensive Sudoku website built with Python using Flask and SQL. Users can create accounts which come with three built in sudoku puzzles of varying difficulty, and work on solving these puzzles. Additionally, users can create and validate their own sudoku puzzles. Lastly, with our sudoku solving algorithm, users can figure out solutions to any puzzle of interest.
 
+## Demo Video
+
+For a demo of the website and all functionalities, download [CS50SadhukaZhao.mp4](https://github.com/yizhao3721/sudoku/blob/master/CS50SadhukaZhao.mp4).
+
 ## Compiling
 
 Our project is hosted on the CS50 IDE.  As such, you should compile our program through the IDE using a new terminal window on https://ide.cs50.io/yijiang_zhao/ide50.  To do so, open a new terminal, execute cd project, then cd final.  Once in the final folder, execute flask run.  The terminal should give a link to http://ide50-yijiang-zhao.cs50.io:8080/.
